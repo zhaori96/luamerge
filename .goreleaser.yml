@@ -68,7 +68,7 @@ changelog:
 
 release:
   github:
-    owner: YOUR_USERNAME
+    owner: zhaori96
     name: luamerge
   draft: false
   prerelease: auto
@@ -79,4 +79,4 @@ release:
 uploads:
   - name: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}{{ .Ext }}"
     mode: binary
-    target: "https://uploads.github.com/repos/YOUR_USERNAME/luamerge/releases/{{ .Tag }}/assets?name={{ .ArtifactName }}"
+    target: "https://uploads.github.com/repos/zhaori96/luamerge/releases/{{ .Tag }}/assets?name={{ .ArtifactName }}"
