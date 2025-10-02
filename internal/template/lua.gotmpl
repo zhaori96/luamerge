@@ -1,0 +1,23 @@
+{{- define "value" -}}
+    {{- if eq .Type 4 -}}
+        {{- template "table" .Table -}}
+    {{- else if eq .Type 3 -}}
+        "{{- .String -}}"
+    {{- else if eq .Type 1 -}}
+        {{- if .Value}}true{{else}}false{{end -}}
+    {{- else if eq .Type 6 -}}
+        {{- .Value -}}
+    {{- else -}}
+        {{- .Value -}}
+    {{- end -}}
+{{- end -}}
+
+{{- define "table" -}}
+{
+{{- range .Range}}
+    {{.Name}} = {{template "value" .Value}},
+{{- end}}
+}
+{{- end -}}
+
+{{.TableName}} = {{template "table" .Table -}}
