@@ -16,11 +16,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var inputDir string
+var (
+	inputDir string
+	version  = "dev"
+	commit   = "none"
+	date     = "unknown"
+)
 
 var rootCmd = &cobra.Command{
-	Use:   "luamerge",
-	Short: "Merge Lua table files based on settings.json configuration",
+	Use:     "luamerge",
+	Short:   "Merge Lua table files based on settings.json configuration",
+	Version: version,
 	Long: `luamerge is a tool to merge Lua table files using job-based configuration.
 It reads settings.json from the input directory and processes all configured jobs.
 Each job can merge multiple tables from a pair of Lua files.`,
@@ -116,6 +122,7 @@ Each job can merge multiple tables from a pair of Lua files.`,
 
 func init() {
 	rootCmd.Flags().StringVarP(&inputDir, "inputs", "i", "input", "Input directory containing settings.json")
+	rootCmd.SetVersionTemplate(fmt.Sprintf("luamerge version %s (commit: %s, built: %s)\n", version, commit, date))
 }
 
 func main() {
