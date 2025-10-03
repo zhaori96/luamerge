@@ -17,6 +17,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Configure Git line endings
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+          git reset --hard HEAD
+
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
