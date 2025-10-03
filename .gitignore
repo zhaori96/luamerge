@@ -10,6 +10,7 @@ goluatbl
 
 # Output of the go coverage tool
 *.out
+./dist
 
 # Go workspace file
 go.work

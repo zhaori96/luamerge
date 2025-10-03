@@ -41,7 +41,7 @@ func applyRules(base, source *parser.Table, rules map[string]any) {
 // Iterates over all entries in the base table and applies merge rules.
 func mergeInternal(baseTable, sourceTable *parser.Table, rules map[string]any) {
 	// If rules is nil or empty, replace the entire table
-	if rules == nil || len(rules) == 0 {
+	if len(rules) == 0 {
 		// Clear the base table and copy everything from source
 		for sourceEntry := range sourceTable.Range() {
 			baseTable.AddOrReplace(sourceEntry.Name, sourceEntry.Value)
