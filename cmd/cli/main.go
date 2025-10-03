@@ -19,8 +19,6 @@ import (
 var (
 	inputDir string
 	version  = "dev"
-	commit   = "none"
-	date     = "unknown"
 )
 
 var rootCmd = &cobra.Command{
@@ -122,7 +120,7 @@ Each job can merge multiple tables from a pair of Lua files.`,
 
 func init() {
 	rootCmd.Flags().StringVarP(&inputDir, "inputs", "i", "input", "Input directory containing settings.json")
-	rootCmd.SetVersionTemplate(fmt.Sprintf("luamerge version %s (commit: %s, built: %s)\n", version, commit, date))
+	rootCmd.SetVersionTemplate(fmt.Sprintf("v%s\n", version))
 }
 
 func main() {
