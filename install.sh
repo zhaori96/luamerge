@@ -10,7 +10,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Configuration
-REPO="your-username/luamerge"  # Replace with your GitHub username/repo
+REPO="zhaori96/luamerge"
 BINARY_NAME="luamerge"
 INSTALL_DIR="${INSTALL_DIR:-$HOME/.local/bin}"
 VERSION="${VERSION:-latest}"
