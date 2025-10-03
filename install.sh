@@ -113,11 +113,23 @@ else
     fi
 fi
 
-# Construct download URL
-DOWNLOAD_URL="https://github.com/$REPO/releases/download/$RELEASE_VERSION/${BINARY_NAME}_${OS}_${ARCH}"
-if [ "$OS" = "windows" ]; then
-    DOWNLOAD_URL="${DOWNLOAD_URL}.exe"
+# Construct download URL for archive
+ARCH_NAME="${ARCH}"
+if [ "$ARCH" = "amd64" ]; then
+    ARCH_NAME="x86_64"
+elif [ "$ARCH" = "arm" ]; then
+    ARCH_NAME="armv7"
 fi
+
+OS_NAME="$(echo $OS | sed 's/\b\(.\)/\u\1/')" # Capitalize first letter
+
+if [ "$OS" = "windows" ]; then
+    ARCHIVE_NAME="${BINARY_NAME}_${RELEASE_VERSION#v}_Windows_${ARCH_NAME}.zip"
+else
+    ARCHIVE_NAME="${BINARY_NAME}_${RELEASE_VERSION#v}_${OS_NAME}_${ARCH_NAME}.tar.gz"
+fi
+
+DOWNLOAD_URL="https://github.com/$REPO/releases/download/$RELEASE_VERSION/$ARCHIVE_NAME"
 
 echo -e "${YELLOW}Downloading from: $DOWNLOAD_URL${NC}"
 
@@ -125,15 +137,24 @@ echo -e "${YELLOW}Downloading from: $DOWNLOAD_URL${NC}"
 TMP_DIR=$(mktemp -d)
 trap "rm -rf $TMP_DIR" EXIT
 
-# Download binary
-if ! curl -L -o "$TMP_DIR/$BINARY_NAME" "$DOWNLOAD_URL"; then
-    echo -e "${RED}Failed to download binary${NC}"
+# Download archive
+if ! curl -L -o "$TMP_DIR/archive" "$DOWNLOAD_URL"; then
+    echo -e "${RED}Failed to download archive${NC}"
     echo "URL: $DOWNLOAD_URL"
     exit 1
 fi
 
+# Extract binary
+echo -e "${YELLOW}Extracting binary...${NC}"
+cd "$TMP_DIR"
+if [ "$OS" = "windows" ]; then
+    unzip -q archive
+else
+    tar -xzf archive
+fi
+
 # Make binary executable
-chmod +x "$TMP_DIR/$BINARY_NAME"
+chmod +x "$BINARY_NAME"
 
 # Create install directory if it doesn't exist
 mkdir -p "$INSTALL_DIR"
