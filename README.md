@@ -20,25 +20,25 @@ A CLI tool to merge Lua table files for Ragnarok Online, using JSON-based job co
 Install the latest version:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/luamerge/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/zhaori96/luamerge/main/install.sh | bash
 ```
 
 Install a specific version:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/luamerge/main/install.sh | VERSION=v1.0.0 bash
+curl -sSL https://raw.githubusercontent.com/zhaori96/luamerge/main/install.sh | VERSION=v1.0.0 bash
 ```
 
 Install to a custom directory:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/luamerge/main/install.sh | INSTALL_DIR=/usr/local/bin bash
+curl -sSL https://raw.githubusercontent.com/zhaori96/luamerge/main/install.sh | INSTALL_DIR=/usr/local/bin bash
 ```
 
 Or download and run the install script:
 
 ```bash
-wget https://raw.githubusercontent.com/YOUR_USERNAME/luamerge/main/install.sh
+wget https://raw.githubusercontent.com/zhaori96/luamerge/main/install.sh
 chmod +x install.sh
 ./install.sh
 
@@ -51,12 +51,12 @@ INSTALL_DIR=/custom/path ./install.sh
 
 ### Manual Installation
 
-Download the latest binary from the [releases page](https://github.com/YOUR_USERNAME/luamerge/releases) and add it to your PATH.
+Download the latest binary from the [releases page](https://github.com/zhaori96/luamerge/releases) and add it to your PATH.
 
 ### Build from Source
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/luamerge.git
+git clone https://github.com/zhaori96/luamerge.git
 cd luamerge
 go build -o luamerge ./cmd/cli
 ```
